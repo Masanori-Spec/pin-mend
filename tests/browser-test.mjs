@@ -1,4 +1,4 @@
-import {chromium} from '@playwright/test';import {spawn} from 'node:child_process';import fs from 'node:fs/promises';import assert from 'node:assert/strict';
+import {chromium,expect} from '@playwright/test';import {spawn} from 'node:child_process';import fs from 'node:fs/promises';import assert from 'node:assert/strict';
 import {example} from '../src/profile.mjs';
 await fs.mkdir('test-results/browser',{recursive:true});
 const server=spawn(process.execPath,['scripts/serve.mjs'],{stdio:'pipe'});
@@ -9,7 +9,7 @@ try{
  const context=await browser.newContext({viewport:{width:1440,height:1100},acceptDownloads:true});const page=await context.newPage();
  const foreign=[];page.on('pageerror',e=>report.pageErrors.push(e.message));page.on('request',r=>{if(!r.url().startsWith('http://127.0.0.1:4173'))foreign.push(r.url());});
  await page.goto('http://127.0.0.1:4173');await page.waitForSelector('.repair-count strong');
- const count=async n=>assert.equal(await page.locator('.repair-count strong').textContent(),String(n));
+ const count=async n=>expect(page.locator('.repair-count strong')).toHaveText(String(n));
  const solve=()=>page.locator('#solve').click();
  const download=async name=>{const pending=page.waitForEvent('download');await page.locator('#download').click();const dl=await pending;assert.equal(dl.suggestedFilename(),'PinMendDemo.zip');await dl.saveAs(`test-results/browser/${name}.zip`);};
  await count(4);assert.ok(await page.locator('#download').isDisabled());await page.locator('#ack').check();await download('both-repaired');report.checks.push('Japanese default, min4, required frequency acceptance, real ZIP download');
@@ -27,9 +27,9 @@ try{
  const custom={schema:'pinmend/1',features:{servo:false,tone:false},unavailable:[],signals:aliases.map((id,i)=>({id,type:'digital-out',pin:i+2,fixed:false}))};
  await page.locator('#import').setInputFiles({name:'custom.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(custom))});await count(0);await download('custom-aliases');report.checks.push('Custom pin/identifier JSON exported as actual source ZIP');
  await page.locator('#reset').click();
- await page.locator('#import').setInputFiles({name:'bad.json',mimeType:'application/json',buffer:Buffer.from('{bad')});assert.match(await page.locator('#error').textContent(),/Could not import/);await count(4);report.checks.push('Malformed import preserves current project');
- const evil=example();evil.signals[0].id='<img src=x onerror=alert(1)>';await page.locator('#import').setInputFiles({name:'evil.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(evil))});assert.match(await page.locator('#error').textContent(),/Signal IDs/);assert.equal(await page.locator('#signals img').count(),0);report.checks.push('Hostile identifier rejected');
- await page.locator('#import').setInputFiles({name:'large.json',mimeType:'application/json',buffer:Buffer.alloc(65536,32)});assert.match(await page.locator('#error').textContent(),/64 KiB/);report.checks.push('Bounded JSON import');
+ await page.locator('#import').setInputFiles({name:'bad.json',mimeType:'application/json',buffer:Buffer.from('{bad')});await expect(page.locator('#error')).toContainText('Could not import');await count(4);report.checks.push('Malformed import preserves current project');
+ const evil=example();evil.signals[0].id='<img src=x onerror=alert(1)>';await page.locator('#import').setInputFiles({name:'evil.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(evil))});await expect(page.locator('#error')).toContainText('Signal IDs');assert.equal(await page.locator('#signals img').count(),0);report.checks.push('Hostile identifier rejected');
+ await page.locator('#import').setInputFiles({name:'large.json',mimeType:'application/json',buffer:Buffer.alloc(65536,32)});await expect(page.locator('#error')).toContainText('64 KiB');report.checks.push('Bounded JSON import');
  await page.evaluate(()=>{const original=File.prototype.text;File.prototype.text=function(){if(this.name==='slow.json')return new Promise(resolve=>{window.releasePinmendImport=()=>original.call(this).then(resolve);});return original.call(this);};});
  await page.locator('#import').setInputFiles({name:'slow.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(example({servo:false,tone:false})))});await page.locator('#reset').click();await page.evaluate(()=>window.releasePinmendImport());await count(4);
  await page.locator('#import').setInputFiles({name:'slow.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(example()))});await page.locator('#import').setInputFiles({name:'fast.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(example({servo:false,tone:false})))});await count(0);await page.evaluate(()=>window.releasePinmendImport());await count(0);report.checks.push('Delayed older imports cannot overwrite reset or newer import');
