@@ -5,7 +5,7 @@ import {zipFiles} from '../src/zip.mjs';
 import {en,ja} from './i18n.mjs';
 const $=id=>document.getElementById(id);
 let lang='ja',state=example(),result=null,dirty=false,revision=0;
-const initial=new Map([...document.querySelectorAll('[data-i18n]')].map(e=>[e.dataset.i18n,e.innerHTML]));
+const initial=new Map([...document.querySelectorAll('[data-i18n]')].map(e=>[e.dataset.i18n,e.dataset.i18n==='title'?e.innerHTML:e.textContent]));
 const tr=k=>(lang==='en'?en:ja)[k]||initial.get(k)||k;
 const element=(tag,cls,text)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e;};
 const errorJa={
@@ -68,7 +68,7 @@ function renderResult(){
   $('code').textContent=exportFiles(state)['pins.h'];$('export-area').hidden=false;
 }
 function run(){revision++;try{validate(state);result=solve(state);dirty=false;announce('');$('ack').checked=false;renderResult();}catch(e){invalidate();announce(errorText(e));}}
-$('signals').addEventListener('input',event=>{const e=event.target,key=e.dataset.key;if(!key)return;const i=Number(e.closest('.signal-row').dataset.index);state.signals[i][key]=key==='fixed'?e.checked:key==='pin'?Number(e.value):e.value;invalidate();});
+$('signals').addEventListener('input',event=>{const e=event.target,key=e.dataset.key;if(!key)return;const row=e.closest('.signal-row');const i=Number(row.dataset.index);state.signals[i][key]=key==='fixed'?e.checked:key==='pin'?Number(e.value):e.value;if(key==='id'){row.querySelector('[data-key=type]').setAttribute('aria-label',`${tr('kind')} ${e.value}`);row.querySelector('[data-key=pin]').setAttribute('aria-label',`${tr('pin')} ${e.value}`);row.querySelector('[data-key=fixed]').setAttribute('aria-label',`${tr('fixedLabel')} ${e.value}`);row.querySelector('.remove').setAttribute('aria-label',`${tr('remove')} ${e.value}`);}invalidate();});
 $('signals').addEventListener('change',event=>{if(event.target.dataset.key==='type')renderRows();});
 for(const id of ['servo','tone'])$(id).addEventListener('change',()=>{state.features[id]=$(id).checked;renderRows();invalidate();});
 $('unavailable').addEventListener('change',()=>{state.unavailable=[...$('unavailable').querySelectorAll('input:checked')].map(e=>Number(e.value));invalidate();});
@@ -80,4 +80,7 @@ $('import-button').addEventListener('click',()=>$('import').click());
 $('import').addEventListener('change',async event=>{const file=event.target.files[0];event.target.value='';if(!file)return;const token=++revision;try{if(file.size>=65536)throw new Error(tr('tooBig'));const text=await file.text();if(token!==revision)return;const parsed=JSON.parse(text);validate(parsed);state={schema:parsed.schema,features:{...parsed.features},unavailable:[...parsed.unavailable],signals:parsed.signals.map(({id,type,pin,fixed})=>({id,type,pin,fixed}))};renderInputs();run();}catch(e){if(token===revision)announce(tr('parseError')+errorText(e));}});
 $('download').addEventListener('click',()=>{try{if(dirty||result?.status!=='solved')return;if(result.frequencyChanges.length&&!$('ack').checked){announce(tr('needAck'));return;}const files=exportFiles(state);const bundle=Object.fromEntries(Object.entries(files).map(([name,text])=>[`PinMendDemo/${name}`,text]));const blob=new Blob([zipFiles(bundle)],{type:'application/zip'}),url=URL.createObjectURL(blob),a=element('a');a.href=url;a.download='PinMendDemo.zip';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}catch(e){announce(tr('exportError')+errorText(e));}});
 $('language').addEventListener('click',()=>{lang=lang==='ja'?'en':'ja';document.documentElement.lang=lang;$('language').textContent=lang==='ja'?'EN':'日本語';$('language').setAttribute('aria-label',lang==='ja'?'Switch to English':'日本語に切り替え');for(const e of document.querySelectorAll('[data-i18n]')){const value=lang==='en'?en[e.dataset.i18n]:initial.get(e.dataset.i18n);if(e.dataset.i18n==='title')e.innerHTML=value;else e.textContent=value;}renderInputs();if(dirty)invalidate();else renderResult();});
+let previewWasOpen=false,printing=false;
+window.addEventListener('beforeprint',()=>{if(!printing){const d=$('code').parentElement;previewWasOpen=d.open;printing=true;d.open=true;}});
+window.addEventListener('afterprint',()=>{if(printing){$('code').parentElement.open=previewWasOpen;printing=false;}});
 renderInputs();run();

@@ -1,4 +1,4 @@
-import {chromium,expect} from '@playwright/test';import {spawn} from 'node:child_process';import fs from 'node:fs/promises';import assert from 'node:assert/strict';
+import {chromium,expect} from '@playwright/test';import {spawn,execFileSync} from 'node:child_process';import fs from 'node:fs/promises';import assert from 'node:assert/strict';
 import {example} from '../src/profile.mjs';
 await fs.mkdir('test-results/browser',{recursive:true});
 const server=spawn(process.execPath,['scripts/serve.mjs'],{stdio:'pipe'});
@@ -35,9 +35,22 @@ try{
  await page.locator('#import').setInputFiles({name:'slow.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(example()))});await page.locator('#import').setInputFiles({name:'fast.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(example({servo:false,tone:false})))});await count(0);await page.evaluate(()=>window.releasePinmendImport());await count(0);report.checks.push('Delayed older imports cannot overwrite reset or newer import');
  await page.locator('#reset').click();await page.keyboard.press('Control+Home');await page.locator('body').click({position:{x:1,y:1}});await page.keyboard.press('Tab');assert.ok(await page.locator('.skip').evaluate(e=>e===document.activeElement));await page.keyboard.press('Enter');assert.equal(await page.evaluate(()=>document.activeElement.id),'workspace');report.checks.push('Keyboard skip link');
  await page.locator('#tone').focus();await page.keyboard.press('Space');assert.ok(!(await page.locator('#tone').isChecked()));await page.locator('#solve').focus();await page.keyboard.press('Enter');await count(2);report.checks.push('Keyboard toggle and solve');
- await page.locator('#reset').click();await page.locator('#language').click();await page.setViewportSize({width:390,height:844});await page.screenshot({path:'test-results/browser/mobile-ja.png',fullPage:true});report.screenshots.push('mobile-ja.png');assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+ await page.locator('#reset').click();await page.getByRole('textbox',{name:'Signal ID 1',exact:true}).fill('LIGHT_A');assert.equal(await page.getByRole('combobox',{name:'Current pin LIGHT_A',exact:true}).count(),1);assert.equal(await page.getByRole('checkbox',{name:'Keep pin fixed LIGHT_A',exact:true}).count(),1);assert.equal(await page.getByRole('button',{name:'Remove LIGHT_A',exact:true}).count(),1);report.checks.push('Edited signal identifiers refresh neighboring accessible names');
+ await page.locator('#reset').click();await page.locator('#language').click();assert.doesNotMatch(await page.locator('#solve').textContent(),/[<>]|span/);report.checks.push('JA to EN to JA restores text without literal markup');await page.setViewportSize({width:390,height:844});await page.screenshot({path:'test-results/browser/mobile-ja.png',fullPage:true});report.screenshots.push('mobile-ja.png');assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
  await page.locator('#language').click();await page.screenshot({path:'test-results/browser/mobile-en.png',fullPage:true});report.screenshots.push('mobile-en.png');assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
  await page.setViewportSize({width:320,height:760});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));report.checks.push('Responsive 390px JA/EN and 320px no horizontal overflow');
+ await page.setViewportSize({width:794,height:1123});
+ for(const printLang of ['en','ja']){
+   if(await page.locator('html').getAttribute('lang')!==printLang)await page.locator('#language').click();
+   await page.emulateMedia({media:'print'});await page.evaluate(()=>window.dispatchEvent(new Event('beforeprint')));
+   assert.ok(await page.locator('#code').isVisible());assert.ok(await page.locator('.callout').isVisible());assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+   const pdf=`/tmp/pinmend-print-${printLang}.pdf`;await page.pdf({path:pdf,format:'A4',printBackground:true});
+   const text=execFileSync('pdftotext',['-layout',pdf,'-'],{encoding:'utf8'});assert.match(text,/PINMEND_PIN_LED_A/);assert.match(text,/976\.56/);assert.match(text,/Uno R3/);
+   if(printLang==='en')assert.match(text,/frequency is not preserved/);else assert.match(text,/周波数/);
+   const info=execFileSync('pdfinfo',[pdf],{encoding:'utf8'});const pages=Number(info.match(/Pages:\s+(\d+)/)[1]);assert.ok(pages>=1&&pages<=2,`Print page count ${pages}`);
+   execFileSync('pdftoppm',['-png','-r','90',pdf,`test-results/browser/print-${printLang}`]);for(let i=1;i<=pages;i++)report.screenshots.push(`print-${printLang}-${i}.png`);
+   await fs.rm(pdf);await page.evaluate(()=>window.dispatchEvent(new Event('afterprint')));await page.emulateMedia({media:'screen'});assert.equal(await page.locator('#code').evaluate(e=>e.parentElement.open),false);
+ }report.checks.push('Actual JA/EN A4 print PDFs, generated source and frequency warning text, page bounds and rendered PNG inspection');
  const pending=page.waitForEvent('filechooser');await page.locator('#import-button').focus();await page.keyboard.press('Enter');await pending;report.checks.push('Keyboard import control');
  assert.deepEqual(foreign,[]);assert.deepEqual(report.pageErrors,[]);report.checks.push('No external requests, no JavaScript errors');
  report.status='passed';console.log(JSON.stringify(report,null,2));
