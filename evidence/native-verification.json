@@ -1,0 +1,476 @@
+{
+  "schema": "pinmend-native-evidence/1",
+  "status": "passed",
+  "extraCompiles": [
+    {
+      "name": "core-macro-alias-identifiers",
+      "status": "passed",
+      "signalIds": [
+        "A0",
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "A6",
+        "A7",
+        "SPI_SS",
+        "SPI_MOSI",
+        "WIRE_SDA",
+        "WIRE_SCL"
+      ]
+    }
+  ],
+  "profile": {
+    "id": "uno-r3-avr-1.8.8-servo-1.3.0",
+    "board": "Arduino Uno R3",
+    "mcu": "ATmega328P",
+    "clockHz": 16000000,
+    "fqbn": "arduino:avr:uno",
+    "core": "arduino:avr@1.8.8",
+    "servo": "Servo@1.3.0",
+    "cli": "1.5.1",
+    "pins": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ],
+    "pwmPins": [
+      3,
+      5,
+      6,
+      9,
+      10,
+      11
+    ],
+    "timers": {
+      "3": 2,
+      "5": 0,
+      "6": 0,
+      "9": 1,
+      "10": 1,
+      "11": 2
+    },
+    "pwmHz": {
+      "3": 490.19607843137254,
+      "5": 976.5625,
+      "6": 976.5625,
+      "9": 490.19607843137254,
+      "10": 490.19607843137254,
+      "11": 490.19607843137254
+    }
+  },
+  "cliVersion": "arduino-cli  Version: 1.5.1 Commit: 01f3d4f2b Date: 2026-06-05T10:22:17Z",
+  "simulator": "avr8js@0.21.1",
+  "method": "Official generated demo source compiled to Uno firmware; AVR instruction execution and GPIO edge measurement. Firmware and raw traces stay temporary.",
+  "limitations": [
+    "Simulator result only, not hardware/electrical validation",
+    "New LED carrier 976.56 Hz vs previous 490.20 Hz: not waveform preserving"
+  ],
+  "cases": [
+    {
+      "name": "both-repaired",
+      "compiled": true,
+      "verifiedCompileTarget": {
+        "core": "1.8.8",
+        "servo": "1.3.0",
+        "mcu": "atmega328p",
+        "clockHz": 16000000
+      },
+      "sourceOrigin": "generated-source",
+      "sourceSha256": "e85b78745b0cfe11a25dd68c0c359c84eec159d2d13d59db3891b3a8e66caae8",
+      "pinsSha256": "85b639df1198a5c50a6372e8c14f368ea37c4e72bea2848e7f5dabc383a86bf5",
+      "cycles": 4800001,
+      "measurements": {
+        "LED_A": {
+          "pre": {
+            "pin": 5,
+            "windowMs": [
+              15,
+              50
+            ],
+            "edgeCount": 68,
+            "periods": 33,
+            "frequencyHz": 976.5625,
+            "meanPeriodUs": 1024,
+            "meanHighUs": 256.00735294117646,
+            "dutyFraction": 0.25000718060661764,
+            "minPeriodUs": 1023.8125,
+            "maxPeriodUs": 1024.125
+          },
+          "post": {
+            "pin": 5,
+            "windowMs": [
+              100,
+              280
+            ],
+            "edgeCount": 352,
+            "periods": 175,
+            "frequencyHz": 976.562840598089,
+            "meanPeriodUs": 1023.9996428571428,
+            "meanHighUs": 255.9989346590909,
+            "dutyFraction": 0.24999904682076637,
+            "minPeriodUs": 1023.9375,
+            "maxPeriodUs": 1024.0625
+          }
+        },
+        "LED_B": {
+          "pre": {
+            "pin": 6,
+            "windowMs": [
+              15,
+              50
+            ],
+            "edgeCount": 69,
+            "periods": 33,
+            "frequencyHz": 976.5625,
+            "meanPeriodUs": 1024,
+            "meanHighUs": 768.0018382352941,
+            "dutyFraction": 0.7500017951516544,
+            "minPeriodUs": 1023.8125,
+            "maxPeriodUs": 1024.125
+          },
+          "post": {
+            "pin": 6,
+            "windowMs": [
+              100,
+              280
+            ],
+            "edgeCount": 352,
+            "periods": 175,
+            "frequencyHz": 976.562840598089,
+            "meanPeriodUs": 1023.9996428571428,
+            "meanHighUs": 768.0007142857143,
+            "dutyFraction": 0.7500009591242185,
+            "minPeriodUs": 1023.9375,
+            "maxPeriodUs": 1024.0625
+          }
+        },
+        "SERVO": {
+          "pin": 8,
+          "windowMs": [
+            100,
+            280
+          ],
+          "edgeCount": 18,
+          "periods": 8,
+          "frequencyHz": 49.99250112483128,
+          "meanPeriodUs": 20003,
+          "meanHighUs": 1499.6527777777778,
+          "dutyFraction": 0.0749713931799119,
+          "minPeriodUs": 20002.9375,
+          "maxPeriodUs": 20003.0625
+        },
+        "TONE": {
+          "pin": 12,
+          "windowMs": [
+            100,
+            280
+          ],
+          "edgeCount": 360,
+          "periods": 179,
+          "frequencyHz": 1000.000349162133,
+          "meanPeriodUs": 999.9996508379888,
+          "meanHighUs": 499.97430555555553,
+          "dutyFraction": 0.49997448012765056,
+          "minPeriodUs": 994.5,
+          "maxPeriodUs": 1005.5
+        }
+      }
+    },
+    {
+      "name": "both-old-negative",
+      "compiled": true,
+      "verifiedCompileTarget": {
+        "core": "1.8.8",
+        "servo": "1.3.0",
+        "mcu": "atmega328p",
+        "clockHz": 16000000
+      },
+      "sourceOrigin": "generated-source",
+      "sourceSha256": "e85b78745b0cfe11a25dd68c0c359c84eec159d2d13d59db3891b3a8e66caae8",
+      "pinsSha256": "48964f2c547447f8e83ae21a4be7653c6a16acf1c80d741c9ad8d45bd9cb2899",
+      "cycles": 4800000,
+      "measurements": {
+        "LED_A": {
+          "pre": {
+            "pin": 9,
+            "windowMs": [
+              15,
+              50
+            ],
+            "edgeCount": 34,
+            "periods": 16,
+            "frequencyHz": 490.19607843137254,
+            "meanPeriodUs": 2040,
+            "meanHighUs": 512.0073529411765,
+            "dutyFraction": 0.25098399653979236,
+            "minPeriodUs": 2039.8125,
+            "maxPeriodUs": 2040.1875
+          },
+          "post": {
+            "pin": 9,
+            "windowMs": [
+              100,
+              280
+            ],
+            "edgeCount": 0,
+            "periods": 0,
+            "frequencyHz": null,
+            "meanPeriodUs": null,
+            "meanHighUs": null,
+            "dutyFraction": null,
+            "minPeriodUs": null,
+            "maxPeriodUs": null
+          }
+        },
+        "LED_B": {
+          "pre": {
+            "pin": 10,
+            "windowMs": [
+              15,
+              50
+            ],
+            "edgeCount": 35,
+            "periods": 16,
+            "frequencyHz": 490.19701707455783,
+            "meanPeriodUs": 2039.99609375,
+            "meanHighUs": 1536.0036764705883,
+            "dutyFraction": 0.7529444204214365,
+            "minPeriodUs": 2039.8125,
+            "maxPeriodUs": 2040.1875
+          },
+          "post": {
+            "pin": 10,
+            "windowMs": [
+              100,
+              280
+            ],
+            "edgeCount": 0,
+            "periods": 0,
+            "frequencyHz": null,
+            "meanPeriodUs": null,
+            "meanHighUs": null,
+            "dutyFraction": null,
+            "minPeriodUs": null,
+            "maxPeriodUs": null
+          }
+        },
+        "SERVO": {
+          "pin": 8,
+          "windowMs": [
+            100,
+            280
+          ],
+          "edgeCount": 18,
+          "periods": 8,
+          "frequencyHz": 49.99095866645993,
+          "meanPeriodUs": 20003.6171875,
+          "meanHighUs": 1500.2777777777778,
+          "dutyFraction": 0.07500032437709725,
+          "minPeriodUs": 20002.9375,
+          "maxPeriodUs": 20008
+        },
+        "TONE": {
+          "pin": 12,
+          "windowMs": [
+            100,
+            280
+          ],
+          "edgeCount": 360,
+          "periods": 179,
+          "frequencyHz": 1000.0377109192665,
+          "meanPeriodUs": 999.9622905027933,
+          "meanHighUs": 499.92083333333335,
+          "dutyFraction": 0.49993968580751885,
+          "minPeriodUs": 987.25,
+          "maxPeriodUs": 1012.6875
+        }
+      }
+    },
+    {
+      "name": "no-features-original",
+      "compiled": true,
+      "verifiedCompileTarget": {
+        "core": "1.8.8",
+        "servo": null,
+        "mcu": "atmega328p",
+        "clockHz": 16000000
+      },
+      "sourceOrigin": "generated-source",
+      "sourceSha256": "9b7ceed5ef094140cfb6369ad222f28f4d5b8cf3c4e122f4f09531911aee2928",
+      "pinsSha256": "04817b6b36d13b202419781f616677fb5d78fd3933bf853246d6d7513f8bbd63",
+      "cycles": 4800001,
+      "measurements": {
+        "LED_A": {
+          "pre": {
+            "pin": 9,
+            "windowMs": [
+              15,
+              50
+            ],
+            "edgeCount": 34,
+            "periods": 16,
+            "frequencyHz": 490.19607843137254,
+            "meanPeriodUs": 2040,
+            "meanHighUs": 512.0073529411765,
+            "dutyFraction": 0.25098399653979236,
+            "minPeriodUs": 2039.8125,
+            "maxPeriodUs": 2040.1875
+          },
+          "post": {
+            "pin": 9,
+            "windowMs": [
+              100,
+              280
+            ],
+            "edgeCount": 177,
+            "periods": 87,
+            "frequencyHz": 490.19607843137254,
+            "meanPeriodUs": 2040,
+            "meanHighUs": 512,
+            "dutyFraction": 0.25098039215686274,
+            "minPeriodUs": 2039.9375,
+            "maxPeriodUs": 2040.0625
+          }
+        },
+        "LED_B": {
+          "pre": {
+            "pin": 10,
+            "windowMs": [
+              15,
+              50
+            ],
+            "edgeCount": 35,
+            "periods": 16,
+            "frequencyHz": 490.19701707455783,
+            "meanPeriodUs": 2039.99609375,
+            "meanHighUs": 1536.0036764705883,
+            "dutyFraction": 0.7529444204214365,
+            "minPeriodUs": 2039.8125,
+            "maxPeriodUs": 2040.1875
+          },
+          "post": {
+            "pin": 10,
+            "windowMs": [
+              100,
+              280
+            ],
+            "edgeCount": 176,
+            "periods": 87,
+            "frequencyHz": 490.19607843137254,
+            "meanPeriodUs": 2040,
+            "meanHighUs": 1535.9985632183907,
+            "dutyFraction": 0.7529404721658778,
+            "minPeriodUs": 2039.9375,
+            "maxPeriodUs": 2040.0625
+          }
+        }
+      }
+    },
+    {
+      "name": "servo-only-repaired",
+      "compiled": true,
+      "verifiedCompileTarget": {
+        "core": "1.8.8",
+        "servo": "1.3.0",
+        "mcu": "atmega328p",
+        "clockHz": 16000000
+      },
+      "sourceOrigin": "generated-source",
+      "sourceSha256": "3453a8ce4c1fc9095d41a0c352cefb7fcb4a071607fca59c56b819554a7b9a66",
+      "pinsSha256": "7cc229cd95b53c0022469ed2cd436741b4d184f977e18ba89efa988f204824f2",
+      "cycles": 4800001,
+      "measurements": {
+        "LED_A": {
+          "pre": {
+            "pin": 3,
+            "windowMs": [
+              15,
+              50
+            ],
+            "edgeCount": 34,
+            "periods": 16,
+            "frequencyHz": 490.19513979178197,
+            "meanPeriodUs": 2040.00390625,
+            "meanHighUs": 511.99632352941177,
+            "dutyFraction": 0.2509781093853784,
+            "minPeriodUs": 2039.875,
+            "maxPeriodUs": 2040.125
+          },
+          "post": {
+            "pin": 3,
+            "windowMs": [
+              100,
+              280
+            ],
+            "edgeCount": 177,
+            "periods": 87,
+            "frequencyHz": 490.1962510551369,
+            "meanPeriodUs": 2039.9992816091954,
+            "meanHighUs": 511.99857954545456,
+            "dutyFraction": 0.2509797842387371,
+            "minPeriodUs": 2039.9375,
+            "maxPeriodUs": 2040.0625
+          }
+        },
+        "LED_B": {
+          "pre": {
+            "pin": 11,
+            "windowMs": [
+              15,
+              50
+            ],
+            "edgeCount": 35,
+            "periods": 16,
+            "frequencyHz": 490.19607843137254,
+            "meanPeriodUs": 2040,
+            "meanHighUs": 1536,
+            "dutyFraction": 0.7529411764705882,
+            "minPeriodUs": 2039.875,
+            "maxPeriodUs": 2040.1875
+          },
+          "post": {
+            "pin": 11,
+            "windowMs": [
+              100,
+              280
+            ],
+            "edgeCount": 176,
+            "periods": 87,
+            "frequencyHz": 490.1962510551369,
+            "meanPeriodUs": 2039.9992816091954,
+            "meanHighUs": 1536,
+            "dutyFraction": 0.7529414416206902,
+            "minPeriodUs": 2039.9375,
+            "maxPeriodUs": 2040.0625
+          }
+        },
+        "SERVO": {
+          "pin": 8,
+          "windowMs": [
+            100,
+            280
+          ],
+          "edgeCount": 18,
+          "periods": 8,
+          "frequencyHz": 49.99250112483128,
+          "meanPeriodUs": 20003,
+          "meanHighUs": 1499.7152777777778,
+          "dutyFraction": 0.0749745177112322,
+          "minPeriodUs": 20002.9375,
+          "maxPeriodUs": 20003.0625
+        }
+      }
+    }
+  ]
+}

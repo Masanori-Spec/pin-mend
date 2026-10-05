@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><title>PinMend · Uno pin repair</title><style>:root{--ink:#193b3d;--muted:#526a68;--paper:#f6f7f2;--white:#fff;--line:#d9e2d9;--green:#166b55;--mint:#e9f5e9;--amber:#ac4f20;--orange:#fff0df;--blue:#1c5da0;--shadow:0 9px 30px #12392c06}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}button,input,select{font:inherit}button,a,label.import-button{touch-action:manipulation}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.48}a{color:var(--green)}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #d28134;outline-offset:3px}header{height:84px;max-width:1320px;padding:0 48px;margin:auto;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{text-decoration:none;color:var(--ink);font-weight:800;letter-spacing:-1px;font-size:26px;display:flex;align-items:center;gap:10px}.brand-icon{width:31px;height:31px;border:1.5px solid var(--green);border-radius:8px;display:grid;place-items:center;font-size:24px;line-height:1}nav{display:flex;align-items:center;gap:25px}.local{font-size:12px;font-weight:600}.local:before{content:"";display:inline-block;width:6px;height:6px;background:var(--green);border-radius:50%;margin-right:8px}#language{background:none;border:1px solid #b6c8bd;border-radius:6px;padding:3px 10px;color:var(--ink);font-size:12px;font-weight:700}main{max-width:1224px;margin:auto;padding:0 0 44px}.hero{display:grid;grid-template-columns:1fr 330px;gap:80px;align-items:center;padding:56px 0 38px}.eyebrow{font-size:10px;font-weight:800;letter-spacing:1.8px;margin:0 0 12px;color:var(--green)}h1{font-size:43px;line-height:1.45;letter-spacing:-1.8px;font-weight:750;margin:0 0 18px}.intro{color:var(--muted);max-width:610px;font-size:14px;line-height:1.9;margin:0}.profile-card{display:flex;align-items:center;flex-direction:column;font-size:12px;gap:3px}.profile-card small{font-size:10px;color:var(--muted)}.profile-label{font-size:10px;color:var(--green);border:1px solid var(--line);padding:2px 9px;margin-top:9px;border-radius:20px}.board-abstract{width:200px;height:104px;position:relative;border:1px solid #afc9b8;border-radius:9px;background:linear-gradient(135deg,#e4f0e4,#d2e6d9);margin-bottom:14px;display:flex;align-items:center;justify-content:center;overflow:visible;box-shadow:7px 7px 0 #e6ebe3}.board-abstract span{letter-spacing:3px;font-weight:800;color:#277257;font-size:24px}.board-abstract:before,.board-abstract:after{content:"";width:10px;height:10px;border:1px solid #91b29c;border-radius:50%;position:absolute;left:9px;top:9px}.board-abstract:after{left:auto;right:9px;top:auto;bottom:9px}.board-abstract i{position:absolute;top:-4px;height:8px;width:4px;background:#719885;left:calc(30px + var(--n)*12px)}.board-abstract i:nth-of-type(1){--n:0}.board-abstract i:nth-of-type(2){--n:1}.board-abstract i:nth-of-type(3){--n:2}.board-abstract i:nth-of-type(4){--n:3}.board-abstract i:nth-of-type(5){--n:4}.board-abstract i:nth-of-type(6){--n:5}.board-abstract i:nth-of-type(7){--n:6}.board-abstract i:nth-of-type(8){--n:7}.board-abstract i:nth-of-type(9){--n:8}.board-abstract i:nth-of-type(10){--n:9}.board-abstract i:nth-of-type(11){--n:10}.board-abstract i:nth-of-type(12){--n:11}.scope-strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:center;margin-bottom:28px;padding:12px 0}.scope-strip p{font-size:11px;color:var(--muted);margin:0}.scope-dot{width:6px;height:6px;flex-shrink:0;border-radius:50%;background:var(--green)}.workspace{display:grid;grid-template-columns:1.03fr 1fr;gap:22px;align-items:start;scroll-margin-top:16px}.panel{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:26px;box-shadow:var(--shadow);min-width:0}.section-top{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:22px}.section-top .eyebrow{margin-bottom:4px}h2{font-size:19px;margin:0;letter-spacing:-.5px}.text-button{border:0;background:none;color:var(--green);padding:6px 0;font-size:11px;font-weight:700}.features{display:flex;gap:10px}.features label{background:#f2f6f0;border:1px solid var(--line);border-radius:7px;display:flex;align-items:center;gap:9px;flex:1;padding:10px 14px;font-size:13px;font-weight:700}.features small{font-size:10px;margin-left:8px;color:var(--muted);font-weight:400}input[type=checkbox]{accent-color:var(--green);width:16px;height:16px;flex-shrink:0}.field-help{font-size:10px;color:var(--muted);margin:8px 0 20px}.signal-head,.signal-row{display:grid;grid-template-columns:minmax(80px,1.1fr) minmax(100px,1.3fr) 63px 36px 23px;gap:7px;align-items:center}.signal-head{font-size:9px;letter-spacing:.8px;color:var(--muted);padding:0 0 7px}.signal-row{padding:6px 0}.signal-row input[type=text],.signal-row select{width:100%;min-width:0;border:1px solid var(--line);border-radius:5px;background:#fff;color:var(--ink);font-size:11px;padding:7px 5px;height:34px}.signal-row input[type=text]{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}.signal-row input[type=checkbox]{justify-self:center}.remove{border:0;background:none;color:#85958b;font-size:17px;padding:0}.inactive{opacity:.5}.add{border:1px dashed #bad0bd;color:var(--green);background:#fff;border-radius:5px;width:100%;padding:7px;margin-top:9px;font-size:11px}.unavailable{margin:20px 0 22px;padding:0;border:0}.unavailable legend{font-size:11px;margin-bottom:9px;color:var(--muted)}#unavailable{display:flex;flex-wrap:wrap;gap:5px}.pin-check{position:relative}.pin-check input{position:absolute;opacity:0;width:1px;height:1px}.pin-check span{display:block;font-size:10px;border:1px solid var(--line);padding:4px 7px;min-width:33px;text-align:center;border-radius:4px;cursor:pointer}.pin-check input:checked+span{background:var(--orange);border-color:#e8b87e;color:var(--amber);text-decoration:line-through}.pin-check input:focus-visible+span{outline:3px solid #d28134;outline-offset:2px}.input-actions{display:flex;align-items:center;justify-content:space-between;gap:12px}.import-button{font-size:11px;color:var(--green);cursor:pointer;text-decoration:underline;text-underline-offset:4px}.primary{border:1px solid var(--green);border-radius:6px;color:white;background:var(--green);font-size:12px;font-weight:650;padding:10px 16px;transition:background .15s}.primary:hover:enabled{background:#105440}.error{font-size:12px;color:#ab3024;margin:12px 0 0;overflow-wrap:anywhere}.error:empty{display:none}.pill{font-size:10px;font-weight:700;color:var(--green);background:var(--mint);border-radius:20px;padding:4px 10px;white-space:nowrap}.pill.warning{color:var(--amber);background:var(--orange)}.repair-count{display:flex;gap:14px;align-items:center;margin:10px 0 17px}.repair-count strong{font-size:58px;line-height:1;font-weight:700;letter-spacing:-3px}.repair-count span{font-size:12px;font-weight:650}.repair-count small{display:block;font-size:10px;color:var(--muted);font-weight:400;margin-top:3px}.mapping{border-top:1px solid var(--line);margin:18px 0}.mapping-row{display:grid;grid-template-columns:1fr 45px 24px 45px 45px;gap:7px;align-items:center;border-bottom:1px solid #ecf0ea;padding:10px 0;font-size:11px}.mapping-id{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:11px;overflow-wrap:anywhere}.old-pin{color:#819087}.new-pin{font-weight:800;color:var(--green)}.arrow{color:#839c8c;text-align:center}.mapping-tag{font-size:9px;color:var(--green);text-align:right}.mapping-row.unchanged .new-pin{color:var(--muted)}.explain{font-size:11px;color:var(--muted);line-height:1.8;margin:10px 0}.callout{background:var(--orange);border:1px solid #f4dbb9;border-radius:6px;padding:11px 13px;margin:15px 0;color:#7c3d19;font-size:11px;line-height:1.8}.callout strong{display:block;font-size:12px;margin-bottom:2px}.timer-map{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:15px 0}.timer{border:1px solid var(--line);border-radius:6px;padding:9px;font-size:10px}.timer b{display:block;font-size:11px}.timer.used{background:#f5eee5;border-color:#e2d4c2}.timer span{color:var(--muted)}.ack{display:flex;align-items:flex-start;gap:8px;font-size:11px;color:var(--muted);line-height:1.6;margin:19px 0 12px}.ack input{margin-top:2px}.download{width:100%}.download-help{font-size:9px;color:var(--muted);text-align:center;overflow-wrap:anywhere;margin:8px 0 12px}details{font-size:11px}summary{cursor:pointer;font-weight:650;padding:5px 0}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f2f5ef;border:1px solid var(--line);padding:12px;border-radius:5px;font-size:10px;color:var(--ink)}.evidence{display:grid;grid-template-columns:1fr 1.4fr;gap:65px;padding:42px 0 30px;margin-top:22px;border-bottom:1px solid var(--line)}.evidence h2{font-size:21px}.evidence p:not(.eyebrow){font-size:11px;color:var(--muted);max-width:370px;margin:10px 0 0}.evidence-stats{display:grid;grid-template-columns:repeat(3,1fr);align-items:center;gap:25px}.evidence-stats strong{font-size:24px;font-weight:700;display:block;white-space:nowrap}.evidence-stats small{font-size:11px;font-weight:500;color:var(--muted)}.evidence-stats span{display:block;font-size:10px;color:var(--muted);margin-top:4px}.notes{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding-top:23px}.notes details{font-size:11px;color:var(--muted)}footer{border-top:1px solid var(--line);max-width:1320px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 48px;color:var(--muted);font-size:10px}footer>span:first-child{font-size:15px;font-weight:750;color:var(--ink)}.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.skip{position:absolute;left:12px;top:-100px;background:white;padding:8px 16px;z-index:5}.skip:focus{top:8px}.stale{color:var(--muted);font-size:13px;padding:35px 0 80px}.infeasible h3{font-size:21px;margin:20px 0 10px}.infeasible .repair-count strong{color:var(--amber)}[hidden]{display:none!important}@media(max-width:1320px){main{margin:0 48px}}@media(max-width:1050px){.hero{gap:25px;grid-template-columns:1fr 240px}h1{font-size:36px}.panel{padding:20px}.workspace{gap:15px}.signal-head,.signal-row{grid-template-columns:minmax(67px,1fr) minmax(95px,1.25fr) 55px 28px 17px;gap:4px}.features label{padding:9px}.evidence{gap:25px}.evidence-stats{gap:15px}.evidence-stats strong{font-size:22px}}@media(max-width:840px){header{padding:0 25px;height:70px}main{margin:0 25px}.hero{padding-top:36px;grid-template-columns:1fr 190px}.board-abstract{transform:scale(.8);margin-bottom:0}.profile-card strong{font-size:10px}.profile-card small{font-size:9px}.profile-label{display:none}h1{font-size:31px}.intro{font-size:12px}.workspace{grid-template-columns:1fr}.panel{padding:24px}.signal-head,.signal-row{grid-template-columns:1.2fr 1.6fr 70px 40px 25px;gap:8px}.signal-row input[type=text],.signal-row select{font-size:12px}.evidence{grid-template-columns:1fr;gap:22px}.evidence p:not(.eyebrow){max-width:none}.evidence-stats{max-width:540px}.notes{grid-template-columns:1fr;gap:10px}footer{padding:20px 25px}footer>span:last-child{display:none}}@media(max-width:520px){header{padding:0 18px;height:65px}.brand{font-size:24px}nav{gap:12px}.local{font-size:9px}main{margin:0 16px}.hero{display:block;padding:30px 2px 25px}.hero .eyebrow{font-size:9px;letter-spacing:1.5px}h1{font-size:30px;letter-spacing:-1.1px;line-height:1.5}.intro{font-size:12px;line-height:1.85}.profile-card{margin-top:23px;align-items:flex-start;gap:1px}.board-abstract{display:none}.profile-card strong{font-size:11px}.profile-card small{font-size:10px}.scope-strip{padding:11px 2px;margin-bottom:18px}.scope-strip p{font-size:10px}.panel{padding:19px 15px}.section-top{margin-bottom:18px;gap:10px}h2{font-size:18px}.text-button{font-size:10px}.signal-head,.signal-row{grid-template-columns:minmax(63px,1fr) minmax(93px,1.3fr) 54px 27px 18px;gap:4px}.signal-row input[type=text],.signal-row select{font-size:10px;padding:6px 3px;height:36px}.signal-head{font-size:9px}.features label{font-size:12px;padding:9px 10px}.features small{font-size:9px}.field-help{font-size:9px}.mapping-row{grid-template-columns:1fr 39px 20px 39px 37px}.primary{padding:10px 12px;font-size:11px}.input-actions{gap:8px}.import-button{font-size:10px}.timer{padding:8px 6px}.evidence{padding:28px 2px 26px}.evidence h2{font-size:20px}.evidence-stats{gap:12px}.evidence-stats strong{font-size:21px}.evidence-stats span{font-size:9px}.evidence-stats small{font-size:9px}footer{padding:18px;gap:18px;font-size:9px}footer p{max-width:245px}.repair-count strong{font-size:53px}}
+.import-button{border:0;background:none;padding:7px 0}
+</style></head>
+<body>
+<a class="skip" href="#workspace" data-i18n="skip">編集画面へ</a>
+<header><a class="brand" href="#"><span class="brand-icon" aria-hidden="true">⏚</span> PinMend</a><nav><span class="local" data-i18n="local">ブラウザ内で完結</span><button id="language" type="button" aria-label="Switch to English">EN</button></nav></header>
+<main>
+<section class="hero"><div><p class="eyebrow">A SMALL REPAIR, PRECISELY PROVEN</p><h1 data-i18n="title">ピンの競合を、<br>最小のつなぎ替えで。</h1><p class="intro" data-i18n="intro">Servo と tone を追加したら、LED が暗転。Uno のタイマー競合を見つけ、固定した配線を守りながら、変更する信号を最少にします。</p></div><div class="profile-card"><div class="board-abstract" aria-hidden="true"><span>UNO</span><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><strong>UNO R3 / ATmega328P</strong><small>16 MHz · AVR 1.8.8 · Servo 1.3.0</small><span class="profile-label" data-i18n="profile">検証対象を絞ったプロファイル</span></div></section>
+<section class="scope-strip"><span class="scope-dot"></span><p data-i18n="scope">対象は D2–D13 のデジタル信号と LED 輝度用 PWM。Servo は Timer1、tone は Timer2 を使用。D0/D1 は予約済みです。</p></section>
+<div class="workspace" id="workspace" tabindex="-1">
+<section class="panel editor"><div class="section-top"><div><p class="eyebrow" data-i18n="step1">01 / DEFINE</p><h2 data-i18n="inputs">現在の配線</h2></div><button class="text-button" id="reset" data-i18n="reset">サンプルに戻す</button></div>
+<div class="features"><label><input type="checkbox" id="servo" checked><span>Servo <small>Timer1</small></span></label><label><input type="checkbox" id="tone" checked><span>tone <small>Timer2</small></span></label></div>
+<p class="field-help" data-i18n="featureHelp">オフにした周辺機能の信号は、割り当てから除外されます。</p>
+<div class="signal-head" aria-hidden="true"><span data-i18n="signal">信号</span><span data-i18n="kind">種類</span><span>Pin</span><span data-i18n="fixed">固定</span><span></span></div><div id="signals"></div>
+<button class="add" id="add" data-i18n="add">＋ 信号を追加</button>
+<fieldset class="unavailable"><legend data-i18n="unavailable">使用できないピン</legend><div id="unavailable"></div></fieldset>
+<div class="input-actions"><button type="button" class="import-button" id="import-button" data-i18n="import">JSON を読み込む</button><input class="visually-hidden" id="import" type="file" accept="application/json,.json"><button class="primary" id="solve" data-i18n="solve">最小変更を求める <span aria-hidden="true">↗</span></button></div>
+<p class="error" id="error" role="alert"></p></section>
+<section class="panel result"><div class="section-top"><div><p class="eyebrow" data-i18n="step2">02 / REPAIR</p><h2 data-i18n="result">変更プラン</h2></div><span id="status" class="pill" aria-live="polite"></span></div><div id="output" aria-live="polite"></div><div id="export-area" hidden><label class="ack" id="ack-wrap"><input type="checkbox" id="ack"><span data-i18n="ack">LED の輝度用として使い、PWM 周波数の変更を許容します。</span></label><button class="primary download" id="download" data-i18n="download">ソース一式をダウンロード ↓</button><p class="download-help">pins.h + PinMendDemo.ino + wiring-changes.json + pinmend-project.json</p><details><summary data-i18n="preview">生成される pins.h</summary><pre id="code"></pre></details></div></section>
+</div>
+<section class="evidence"><div><p class="eyebrow">03 / EVIDENCE</p><h2 data-i18n="evidenceTitle">割り当てだけで、終わらせない。</h2><p data-i18n="evidenceIntro">同梱サンプルは、公式 Arduino CLI でコンパイルしたコードを AVR8js で実行し、GPIO の変化を測定しています。</p></div><div class="evidence-stats"><article><strong>976.56 <small>Hz</small></strong><span data-i18n="pwmEvidence">修正後 D5/D6 の PWM</span></article><article><strong>1,500 <small>μs</small></strong><span data-i18n="servoEvidence">Servo パルスの目標値</span></article><article><strong>4 <small data-i18n="cases">cases</small></strong><span data-i18n="nativeEvidence">コンパイル＋波形の検証ケース</span></article></div></section>
+<section class="notes"><details><summary data-i18n="limitsTitle">何を保証し、何を保証しないか</summary><p data-i18n="limits">入力した制約の範囲で、変更する信号数が最小の割り当てを厳密に探索します。同数なら信号 ID 順でピン番号が小さい結果を選びます。配線長や作業時間は最適化しません。LED PWM の周波数は保存しません。任意のスケッチ解析・書き換え、実機への転送、電気的安全性・消費電力・ジッタの保証は対象外です。実機は未検証です。</p></details><details><summary data-i18n="sourcesTitle">対象バージョンと出典</summary><p>Arduino CLI 1.5.1 · Arduino AVR Boards 1.8.8 · Servo 1.3.0 · AVR8js 0.21.1 (test only)</p><ul><li><a href="https://docs.arduino.cc/hardware/uno-rev3/" target="_blank" rel="noreferrer">Arduino Uno R3</a></li><li><a href="https://github.com/arduino/ArduinoCore-avr/tree/1.8.8" target="_blank" rel="noreferrer">Arduino AVR core 1.8.8</a></li><li><a href="https://github.com/arduino-libraries/Servo/tree/1.3.0" target="_blank" rel="noreferrer">Servo 1.3.0</a></li><li><a href="https://github.com/wokwi/avr8js" target="_blank" rel="noreferrer">AVR8js</a></li></ul></details></section>
+</main><footer><span>PinMend</span><p data-i18n="footer">入力は端末内で処理されます。通信・保存・実機接続は行いません。</p><span>Uno profile / v0.1</span></footer>
+<script type="module">
+// Original factual profile, independently expressed. Source links are in docs/sources.md.
+const PROFILE = Object.freeze({
+  id: 'uno-r3-avr-1.8.8-servo-1.3.0', board: 'Arduino Uno R3', mcu: 'ATmega328P', clockHz: 16000000,
+  fqbn: 'arduino:avr:uno', core: 'arduino:avr@1.8.8', servo: 'Servo@1.3.0', cli: '1.5.1',
+  pins: Object.freeze(Array.from({length: 12}, (_, i) => i + 2)),
+  pwmPins: Object.freeze([3, 5, 6, 9, 10, 11]),
+  timers: Object.freeze({3: 2, 5: 0, 6: 0, 9: 1, 10: 1, 11: 2}),
+  pwmHz: Object.freeze({3: 16000000 / 64 / 510, 5: 16000000 / 64 / 256, 6: 16000000 / 64 / 256, 9: 16000000 / 64 / 510, 10: 16000000 / 64 / 510, 11: 16000000 / 64 / 510})
+});
+const TYPES = Object.freeze(['led-pwm', 'digital-in', 'digital-out', 'servo', 'tone']);
+function example(features = {servo: true, tone: true}) {
+  return {schema: 'pinmend/1', features: {...features}, unavailable: [], signals: [
+    {id:'LED_A', type:'led-pwm', pin:9, fixed:false},
+    {id:'LED_B', type:'led-pwm', pin:10, fixed:false},
+    {id:'BUTTON_A', type:'digital-in', pin:5, fixed:false},
+    {id:'BUTTON_B', type:'digital-in', pin:6, fixed:false},
+    {id:'SERVO', type:'servo', pin:8, fixed:true},
+    {id:'TONE', type:'tone', pin:12, fixed:true}
+  ]};
+}
+
+const bad = message => {throw new Error(message);};
+function exactKeys(value,keys,label){if(!value||typeof value!=='object'||Array.isArray(value)||Object.keys(value).length!==keys.length||keys.some(k=>!Object.hasOwn(value,k)))bad(`Unknown or missing ${label} fields`);}
+function validate(input) {
+  if (!input || typeof input !== 'object' || Array.isArray(input)) bad('Expected a pinmend/1 object');
+  exactKeys(input,['schema','features','unavailable','signals'],'project');
+  exactKeys(input.features,['servo','tone'],'feature');
+  if(input.schema !== 'pinmend/1') bad('Unsupported schema');
+  if(!input.features || typeof input.features.servo !== 'boolean' || typeof input.features.tone !== 'boolean') bad('Features must be booleans');
+  if(!Array.isArray(input.unavailable) || input.unavailable.some(p=>!Number.isInteger(p)||!PROFILE.pins.includes(p)) || new Set(input.unavailable).size!==input.unavailable.length) bad('Unavailable pins must be unique D2–D13 integers');
+  if(!Array.isArray(input.signals) || input.signals.length<1 || input.signals.length>12) bad('Use 1–12 signals');
+  const ids = new Set(); const counts = {servo:0,tone:0};
+  for(const s of input.signals) {
+    exactKeys(s,['id','type','pin','fixed'],'signal');
+    if(!s || typeof s!=='object' || typeof s.id!=='string' || !/^[A-Z][A-Z0-9_]{0,23}$/.test(s.id) || ids.has(s.id)) bad('Signal IDs must be unique uppercase identifiers (1–24 characters)');
+    ids.add(s.id);
+    if(!TYPES.includes(s.type)) bad('Unsupported signal type');
+    if(!Number.isInteger(s.pin)||!PROFILE.pins.includes(s.pin)) bad('Signal pins must be D2–D13');
+    if(typeof s.fixed!=='boolean') bad('Fixed must be a boolean');
+    if(s.type==='servo'||s.type==='tone') counts[s.type]++;
+  }
+  if(counts.servo>1||counts.tone>1) bad('This profile supports at most one Servo and one tone signal');
+  if(input.features.servo && counts.servo!==1) bad('An enabled Servo feature needs one Servo signal');
+  if(input.features.tone && counts.tone!==1) bad('An enabled tone feature needs one tone signal');
+  return input;
+}
+function activeSignals(input) {return input.signals.filter(s=> !['servo','tone'].includes(s.type) || input.features[s.type]);}
+function pwmAvailable(input) {return PROFILE.pwmPins.filter(p=> !input.unavailable.includes(p) && !(input.features.servo&&[9,10].includes(p)) && !(input.features.tone&&[3,11].includes(p)));}
+function candidates(s,input) {return (s.type==='led-pwm'?pwmAvailable(input):PROFILE.pins.filter(p=>!input.unavailable.includes(p))).filter(p=>!s.fixed||s.pin===p);}
+function diagnose(input) {
+  validate(input); const active = activeSignals(input).slice().sort((a,b)=>a.id<b.id?-1:a.id>b.id?1:0); const issues=[];
+  for (const s of active) {
+    if(!candidates({...s,fixed:false},input).includes(s.pin)) issues.push({id:s.id,pin:s.pin,reason:input.unavailable.includes(s.pin)?'unavailable':s.type==='led-pwm'&&PROFILE.pwmPins.includes(s.pin)?'timer-conflict':'not-pwm'});
+    const other=active.find(x=>x.id!==s.id&&x.pin===s.pin); if(other) issues.push({id:s.id,pin:s.pin,reason:'duplicate',other:other.id});
+  }
+  return issues;
+}
+function solve(input) {
+  validate(input);
+  const rows=activeSignals(input).slice().sort((a,b)=>a.id<b.id?-1:a.id>b.id?1:0);
+  const domains=rows.map(s=>candidates(s,input)); const memo=new Map(); let states=0;
+  function visit(i,mask) {
+    if(i===rows.length) return {cost:0,pins:[]};
+    const key=i*4096+mask; if(memo.has(key)) return memo.get(key); states++;
+    let best=null;
+    for(const pin of domains[i]) {const bit=1<<(pin-2); if(mask&bit)continue;
+      const tail=visit(i+1,mask|bit); if(!tail)continue;
+      const cost=tail.cost+(pin!==rows[i].pin?1:0);
+      // Ascending domains and lexicographic recursion make equal-cost ties deterministic.
+      if(!best || cost<best.cost) best={cost,pins:[pin,...tail.pins]};
+    }
+    memo.set(key,best); return best;
+  }
+  const best=visit(0,0); const issues=diagnose(input);
+  if(!best) {
+    const fixedOther=new Set(rows.filter(s=>s.fixed&&s.type!=='led-pwm').map(s=>s.pin));
+    const pwm=pwmAvailable(input).filter(p=>!fixedOther.has(p)); const demand=rows.filter(s=>s.type==='led-pwm').length;
+    let reason = domains.some(d=>!d.length)?'empty-domain':demand>pwm.length?'pwm-shortage':'distinct-pin-shortage';
+    return {status:'infeasible',issues,reason,emptySignals:rows.filter((_,i)=>!domains[i].length).map(s=>s.id),pwmDemand:demand,pwmCapacity:pwm.length,pwmCandidates:pwm,states};
+  }
+  const assignments=rows.map((s,i)=>({...s,previousPin:s.pin,pin:best.pins[i],changed:s.pin!==best.pins[i]}));
+  const changes=assignments.filter(s=>s.changed).map(s=>({id:s.id,from:s.previousPin,to:s.pin}));
+  const frequencyChanges=assignments.filter(s=>s.type==='led-pwm'&&PROFILE.pwmHz[s.previousPin]!==PROFILE.pwmHz[s.pin]).map(s=>({id:s.id,fromHz:PROFILE.pwmHz[s.previousPin]??null,toHz:PROFILE.pwmHz[s.pin]}));
+  return {status:'solved',cost:best.cost,assignments,changes,frequencyChanges,issues,states,tieBreak:'lexicographic pins by ascending signal ID',optimality:'exact dynamic programming over all distinct-pin assignments'};
+}
+
+function exportFiles(input) {
+  validate(input); const result=solve(input); if(result.status!=='solved') throw new Error('No feasible assignment to export');
+  const rows=result.assignments;
+  const header=['// PinMend generated pin constants. Profile: '+PROFILE.id,'// LED-brightness PWM only: carrier frequency may change.','#pragma once','',...rows.map(s=>`constexpr unsigned char PINMEND_PIN_${s.id} = ${s.pin};`),''].join('\n');
+  const leds=rows.filter(s=>s.type==='led-pwm'); const servo=rows.find(s=>s.type==='servo'); const tone=rows.find(s=>s.type==='tone');
+  const ino=['// Original PinMend demonstrator. No user sketch parsing or hardware upload.', '// Uno R3 / ATmega328P / 16 MHz / Arduino AVR 1.8.8 / Servo 1.3.0', '// Simulation is not electrical validation. Review wiring and power before hardware use.', '#include "pins.h"', ...(servo?['#include <Servo.h>','Servo demoServo;']:[]),'','void setup() {',...rows.filter(s=>s.type==='digital-in').map(s=>`  pinMode(PINMEND_PIN_${s.id}, INPUT_PULLUP);`),...rows.filter(s=>s.type==='digital-out').map(s=>`  pinMode(PINMEND_PIN_${s.id}, OUTPUT);\n  digitalWrite(PINMEND_PIN_${s.id}, LOW);`),...leds.map((s,i)=>`  analogWrite(PINMEND_PIN_${s.id}, ${i%2===0?64:192});`),'  // Establish PWM before taking over timers, exposing conflicts in the old mapping.','  delay(60);',...(servo?[`  demoServo.attach(PINMEND_PIN_${servo.id});`,'  demoServo.writeMicroseconds(1500);']:[]),...(tone?[`  tone(PINMEND_PIN_${tone.id}, 1000);`]:[]),'}','','void loop() {','  // The demo holds fixed brightness and peripheral signals for waveform inspection.','}',''].join('\n');
+  const report={schema:'pinmend-wiring/1',profile:PROFILE,features:input.features,unavailable:input.unavailable,minimumChangedAssignments:result.cost,tieBreak:result.tieBreak,changes:result.changes,assignments:rows,frequencyChanges:result.frequencyChanges,limitations:['LED brightness only; carrier frequency is not preserved','Not an electrical, timing-jitter, power, or hardware safety guarantee','Bounded declarative input; does not parse or rewrite arbitrary sketches']};
+  return {'pins.h':header,'PinMendDemo.ino':ino,'wiring-changes.json':JSON.stringify(report,null,2)+'\n','pinmend-project.json':JSON.stringify(input,null,2)+'\n'};
+}
+
+// Minimal original uncompressed ZIP writer. UTF-8 filenames, fixed timestamp, no dependencies.
+const enc=new TextEncoder();
+function crc32(b){let c=0xffffffff;for(const v of b){c^=v;for(let i=0;i<8;i++)c=(c>>>1)^((c&1)?0xedb88320:0);}return (c^0xffffffff)>>>0;}
+function zipFiles(files) {
+  const chunks=[],central=[];let offset=0;
+  for(const [name,text] of Object.entries(files).sort(([a],[b])=>a.localeCompare(b,'en'))) {
+    const n=enc.encode(name),b=enc.encode(text),crc=crc32(b),h=new Uint8Array(30+n.length),v=new DataView(h.buffer);
+    v.setUint32(0,0x04034b50,true);v.setUint16(4,20,true);v.setUint16(6,0x0800,true);v.setUint16(12,33,true);v.setUint32(14,crc,true);v.setUint32(18,b.length,true);v.setUint32(22,b.length,true);v.setUint16(26,n.length,true);h.set(n,30);
+    const c=new Uint8Array(46+n.length),w=new DataView(c.buffer);w.setUint32(0,0x02014b50,true);w.setUint16(4,20,true);w.setUint16(6,20,true);w.setUint16(8,0x0800,true);w.setUint16(14,33,true);w.setUint32(16,crc,true);w.setUint32(20,b.length,true);w.setUint32(24,b.length,true);w.setUint16(28,n.length,true);w.setUint32(42,offset,true);c.set(n,46);
+    chunks.push(h,b);central.push(c);offset+=h.length+b.length;
+  }
+  const size=central.reduce((n,c)=>n+c.length,0),end=new Uint8Array(22),v=new DataView(end.buffer);v.setUint32(0,0x06054b50,true);v.setUint16(8,central.length,true);v.setUint16(10,central.length,true);v.setUint32(12,size,true);v.setUint32(16,offset,true);
+  const all=new Uint8Array(offset+size+22);let at=0;for(const c of [...chunks,...central,end]){all.set(c,at);at+=c.length;}return all;
+}
+
+const en={skip:'Skip to editor',local:'Runs in your browser',title:'Untangle your pins.<br>Change only what matters.',intro:'Added Servo and tone, and your LEDs went dark? Find Uno timer conflicts and repair the fewest signal assignments while keeping your fixed wiring intact.',profile:'One deliberately bounded profile',scope:'D2–D13 digital signals and LED-brightness PWM only. Servo takes Timer1; tone takes Timer2. D0/D1 stay reserved.',step1:'01 / DEFINE',inputs:'Your current wiring',reset:'Reset example',featureHelp:'Signals for disabled peripherals are excluded from assignment.',signal:'Signal',kind:'Type',fixed:'Fixed',add:'＋ Add signal',unavailable:'Unavailable pins',import:'Import JSON',solve:'Find minimum changes ↗',step2:'02 / REPAIR',result:'The repair plan',ack:'I use PWM for LED brightness and accept the carrier-frequency changes.',download:'Download source bundle ↓',preview:'Preview generated pins.h',evidenceTitle:'A mapping is only the beginning.',evidenceIntro:'The included examples are compiled with official Arduino CLI, executed in AVR8js, and checked against measured GPIO transitions.',pwmEvidence:'Repaired PWM on D5/D6',servoEvidence:'Target Servo pulse width',nativeEvidence:'Compile + waveform cases',cases:'cases',limitsTitle:'The guarantee and its boundaries',limits:'The exact solver minimizes the number of changed signal assignments within your stated constraints. Ties use ascending pin numbers in signal-ID order. It does not minimize wire length or work time, or preserve PWM frequency. Arbitrary sketch parsing/rewriting, hardware upload, and electrical safety, power or jitter guarantees are out of scope. No physical hardware has been tested.',sourcesTitle:'Pinned versions and sources',footer:'Inputs are processed on your device. No upload, storage, or hardware connection.',solved:'Minimum proven',infeasible:'No valid mapping',dirty:'Edited',dirtyText:'Your wiring changed. Find a new minimum to refresh the plan.',changes:'signals to reassign',exact:'Exact search · fixed pins respected',unchanged:'same',changed:'move',fixedTag:'fixed',countExplain:'The objective counts changed signal-to-pin assignments. Each moved signal counts once.',lower:'Why four? Both LEDs must leave Timer1. With Timer2 in use, only D5/D6 support PWM, so both buttons must move too. At least four changes; this plan attains four.',warningTitle:'Brightness PWM ≠ identical waveform',warning:'Carrier changes from about 490 Hz to 977 Hz. The demo keeps the requested duty values; waveform frequency is not preserved.',noFrequency:'No nominal PWM carrier-frequency change in this plan.',noSolution:'These constraints cannot all fit.',shortage:'PWM demand / available PWM pins',locked:'Check fixed assignments and unavailable pins. No files are generated for an infeasible plan.',empty:'A signal has no valid pin under the active constraints.',collision:'There are not enough distinct valid pins for these signals.',pins:'Available after fixed non-PWM signals',remove:'Remove',led:'LED PWM',input:'Digital input',output:'Digital output',name:'Signal ID',pin:'Current pin',fixedLabel:'Keep pin fixed',unused:'Available',reserved:'Reserved by',free:'PWM mode retained',imported:'Project imported. Review the new plan.',tooBig:'Use a JSON file smaller than 64 KiB.',parseError:'Could not import this project: ',max:'This profile supports at most 12 signals.',needAck:'Accept the frequency change before downloading.',downloaded:'Source bundle downloaded. Use PinMendDemo as the sketch folder.',exportError:'Export failed: ',sourceOnly:'Original demonstrator source; no compiled firmware.',constraintHelp:'Turn off a peripheral, free a required pin, or change a fixed assignment.',none:'none'};
+const ja={solved:'最小変更を証明',infeasible:'割り当て不可',dirty:'変更あり',dirtyText:'配線が変更されました。最小変更を求めてプランを更新してください。',changes:'信号の割り当てを変更',exact:'厳密探索 · 固定ピンを維持',unchanged:'維持',changed:'変更',fixedTag:'固定',countExplain:'目的は、ピンの割り当てを変える信号数を最小にすること。移動する信号を 1 件と数えます。',lower:'なぜ 4 件？ 両 LED は Timer1 を離れる必要があります。Timer2 も使用中のため、PWM に使えるのは D5/D6 のみ。両ボタンも移動が必要です。下限 4 件に、このプランは到達します。',warningTitle:'輝度用 PWM ≠ 同じ波形',warning:'PWM 周波数は約 490 Hz から 977 Hz へ変わります。デモの指定デューティ値は維持しますが、波形の周波数は保存しません。',noFrequency:'このプランでは、公称 PWM 周波数は変わりません。',noSolution:'この制約のままでは割り当てできません。',shortage:'必要な PWM 数 / 使用可能な PWM 数',locked:'固定した割り当てと使用不可ピンを確認してください。解がない場合、ファイルは生成しません。',empty:'条件を満たすピンがない信号があります。',collision:'すべての信号を別々の有効なピンに割り当てられません。',pins:'固定の非 PWM 信号を除いた使用可能ピン',remove:'削除',led:'LED PWM',input:'デジタル入力',output:'デジタル出力',name:'信号 ID',pin:'現在のピン',fixedLabel:'ピンを固定',unused:'空き',reserved:'使用機能',free:'PWM モードを維持',imported:'プロジェクトを読み込みました。新しいプランを確認してください。',tooBig:'64 KiB 未満の JSON ファイルを使ってください。',parseError:'プロジェクトを読み込めません: ',max:'このプロファイルの上限は 12 信号です。',needAck:'周波数の変更を確認してからダウンロードしてください。',downloaded:'ソース一式をダウンロードしました。PinMendDemo フォルダーをスケッチとして使ってください。',exportError:'出力できません: ',sourceOnly:'独自のデモソースのみ。コンパイル済みファームウェアは含みません。',constraintHelp:'周辺機能をオフにする、必要なピンを空ける、固定指定を見直すなどで制約を変更してください。',none:'なし'};
+
+const $=id=>document.getElementById(id);
+let lang='ja',state=example(),result=null,dirty=false,revision=0;
+const initial=new Map([...document.querySelectorAll('[data-i18n]')].map(e=>[e.dataset.i18n,e.innerHTML]));
+const tr=k=>(lang==='en'?en:ja)[k]||initial.get(k)||k;
+const element=(tag,cls,text)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e;};
+const errorJa={
+ 'Unknown or missing project fields':'プロジェクトに未対応の項目、または不足した項目があります',
+ 'Unknown or missing feature fields':'周辺機能には servo と tone のみを指定してください',
+ 'Unknown or missing signal fields':'信号には id・type・pin・fixed のみを指定してください',
+ 'Expected a pinmend/1 object':'pinmend/1 形式のオブジェクトが必要です',
+ 'Unsupported schema':'未対応のスキーマです',
+ 'Features must be booleans':'周辺機能には true または false を指定してください',
+ 'Unavailable pins must be unique D2–D13 integers':'使用不可ピンは、重複しない D2–D13 の整数で指定してください',
+ 'Use 1–12 signals':'信号は 1–12 個にしてください',
+ 'Signal IDs must be unique uppercase identifiers (1–24 characters)':'信号 ID は大文字で始まる英数字と _ の 1–24 文字で、重複なく指定してください',
+ 'Unsupported signal type':'未対応の信号種類です',
+ 'Signal pins must be D2–D13':'信号のピンは D2–D13 を指定してください',
+ 'Fixed must be a boolean':'固定指定には true または false を使ってください',
+ 'This profile supports at most one Servo and one tone signal':'Servo と tone の信号は、それぞれ最大 1 個です',
+ 'An enabled Servo feature needs one Servo signal':'Servo を有効にするには、Servo 信号が 1 個必要です',
+ 'An enabled tone feature needs one tone signal':'tone を有効にするには、tone 信号が 1 個必要です'
+};
+function errorText(e){return lang==='ja'?(errorJa[e.message]||(e instanceof SyntaxError?'JSON の構文が正しくありません':e.message)):e.message;}
+function announce(message){$('error').textContent=message;}
+function typeName(type){return ({'led-pwm':tr('led'),'digital-in':tr('input'),'digital-out':tr('output'),servo:'Servo',tone:'tone'})[type];}
+function renderRows(){
+  $('signals').replaceChildren();
+  for(const [index,s] of state.signals.entries()){
+    const row=element('div','signal-row'); if(['servo','tone'].includes(s.type)&&!state.features[s.type])row.classList.add('inactive');
+    row.dataset.index=index;
+    const name=element('input');name.type='text';name.value=s.id;name.maxLength=24;name.setAttribute('aria-label',`${tr('name')} ${index+1}`);name.dataset.key='id';
+    const type=element('select');type.setAttribute('aria-label',`${tr('kind')} ${s.id}`);type.dataset.key='type';
+    for(const t of TYPES){const o=element('option','',typeName(t));o.value=t;type.append(o);}type.value=s.type;
+    const pin=element('select');pin.setAttribute('aria-label',`${tr('pin')} ${s.id}`);pin.dataset.key='pin';for(const p of PROFILE.pins){const o=element('option','',`D${p}`);o.value=p;pin.append(o);}pin.value=s.pin;
+    const lock=element('input');lock.type='checkbox';lock.checked=s.fixed;lock.dataset.key='fixed';lock.setAttribute('aria-label',`${tr('fixedLabel')} ${s.id}`);
+    const remove=element('button','remove','×');remove.type='button';remove.setAttribute('aria-label',`${tr('remove')} ${s.id}`);remove.addEventListener('click',()=>{state.signals.splice(index,1);renderRows();invalidate();});
+    row.append(name,type,pin,lock,remove);$('signals').append(row);
+  }
+  $('add').disabled=state.signals.length>=12;
+}
+function renderPins(){
+  $('unavailable').replaceChildren();for(const p of PROFILE.pins){const label=element('label','pin-check');const input=element('input');input.type='checkbox';input.value=p;input.checked=state.unavailable.includes(p);input.setAttribute('aria-label',`${tr('unavailable')} D${p}`);label.append(input,element('span','',`D${p}`));$('unavailable').append(label);}
+}
+function renderInputs(){ $('servo').checked=state.features.servo;$('tone').checked=state.features.tone;renderRows();renderPins(); }
+function invalidate(){revision++;dirty=true;result=null;$('status').textContent=tr('dirty');$('status').className='pill warning';$('output').replaceChildren(element('p','stale',tr('dirtyText')));$('export-area').hidden=true;$('ack').checked=false;announce('');}
+function timers(){const wrap=element('div','timer-map');for(const [i,pins,used] of [[0,'D5 · D6',false],[1,'D9 · D10',state.features.servo],[2,'D3 · D11',state.features.tone]]){const box=element('div',`timer${used?' used':''}`);box.append(element('b','',`Timer${i}`),element('span','',pins),element('div','',used?(i===1?'Servo':'tone'):tr('free')));wrap.append(box);}return wrap;}
+function isFixture(){const e=example();return JSON.stringify(state)===JSON.stringify(e);}
+function renderResult(){
+  if(!result){invalidate();return;}
+  const out=$('output');out.replaceChildren();$('status').textContent=tr(result.status==='solved'?'solved':'infeasible');$('status').className=`pill${result.status==='solved'?'':' warning'}`;
+  if(result.status==='infeasible'){
+    const box=element('div','infeasible');box.append(element('h3','',tr('noSolution')),timers());
+    if(result.reason==='pwm-shortage'){const c=element('div','repair-count');c.append(element('strong','',`${result.pwmDemand}/${result.pwmCapacity}`),element('span','',tr('shortage')));box.append(c,element('p','explain',`${tr('pins')}: ${result.pwmCandidates.map(p=>`D${p}`).join(', ')||tr('none')}`));}
+    else box.append(element('p','callout',tr(result.reason==='empty-domain'?'empty':'collision')+(result.emptySignals.length?' '+result.emptySignals.join(', '):'')));
+    box.append(element('p','explain',tr('locked')),element('p','explain',tr('constraintHelp')));out.append(box);$('export-area').hidden=true;return;
+  }
+  const count=element('div','repair-count');const words=element('span','',tr('changes'));words.append(element('small','',tr('exact')));count.append(element('strong','',String(result.cost)),words);out.append(count);
+  const list=element('div','mapping');
+  for(const s of result.assignments){const r=element('div',`mapping-row${s.changed?'':' unchanged'}`);r.append(element('span','mapping-id',s.id),element('span','old-pin',`D${s.previousPin}`),element('span','arrow',s.changed?'→':'·'),element('span','new-pin',`D${s.pin}`),element('span','mapping-tag',tr(s.fixed?'fixedTag':s.changed?'changed':'unchanged')));list.append(r);}out.append(list,element('p','explain',isFixture()?tr('lower'):tr('countExplain')),timers());
+  const changes=result.frequencyChanges;
+  if(changes.length){const note=element('div','callout');note.append(element('strong','',tr('warningTitle')));for(const c of changes)note.append(element('div','',`${c.id}: ${c.fromHz===null?'—':c.fromHz.toFixed(2)} Hz → ${c.toHz.toFixed(2)} Hz`));note.append(element('div','',lang==='ja'?'LED 輝度用のみ。波形の周波数は保存しません。':'LED brightness only. Waveform frequency is not preserved.'));out.append(note);}else out.append(element('p','explain',tr('noFrequency')));
+  $('ack-wrap').hidden=!changes.length;$('download').disabled=changes.length>0&&!$('ack').checked;
+  $('code').textContent=exportFiles(state)['pins.h'];$('export-area').hidden=false;
+}
+function run(){revision++;try{validate(state);result=solve(state);dirty=false;announce('');$('ack').checked=false;renderResult();}catch(e){invalidate();announce(errorText(e));}}
+$('signals').addEventListener('input',event=>{const e=event.target,key=e.dataset.key;if(!key)return;const i=Number(e.closest('.signal-row').dataset.index);state.signals[i][key]=key==='fixed'?e.checked:key==='pin'?Number(e.value):e.value;invalidate();});
+$('signals').addEventListener('change',event=>{if(event.target.dataset.key==='type')renderRows();});
+for(const id of ['servo','tone'])$(id).addEventListener('change',()=>{state.features[id]=$(id).checked;renderRows();invalidate();});
+$('unavailable').addEventListener('change',()=>{state.unavailable=[...$('unavailable').querySelectorAll('input:checked')].map(e=>Number(e.value));invalidate();});
+$('solve').addEventListener('click',run);
+$('reset').addEventListener('click',()=>{revision++;state=example();renderInputs();run();});
+$('add').addEventListener('click',()=>{if(state.signals.length>=12)return;let i=1;while(state.signals.some(s=>s.id===`SIGNAL_${i}`))i++;state.signals.push({id:`SIGNAL_${i}`,type:'digital-out',pin:2,fixed:false});renderRows();invalidate();$('signals').lastElementChild.firstElementChild.focus();});
+$('ack').addEventListener('change',()=>{if(result?.status==='solved')$('download').disabled=result.frequencyChanges.length>0&&!$('ack').checked;});
+$('import-button').addEventListener('click',()=>$('import').click());
+$('import').addEventListener('change',async event=>{const file=event.target.files[0];event.target.value='';if(!file)return;const token=++revision;try{if(file.size>=65536)throw new Error(tr('tooBig'));const text=await file.text();if(token!==revision)return;const parsed=JSON.parse(text);validate(parsed);state={schema:parsed.schema,features:{...parsed.features},unavailable:[...parsed.unavailable],signals:parsed.signals.map(({id,type,pin,fixed})=>({id,type,pin,fixed}))};renderInputs();run();}catch(e){if(token===revision)announce(tr('parseError')+errorText(e));}});
+$('download').addEventListener('click',()=>{try{if(dirty||result?.status!=='solved')return;if(result.frequencyChanges.length&&!$('ack').checked){announce(tr('needAck'));return;}const files=exportFiles(state);const bundle=Object.fromEntries(Object.entries(files).map(([name,text])=>[`PinMendDemo/${name}`,text]));const blob=new Blob([zipFiles(bundle)],{type:'application/zip'}),url=URL.createObjectURL(blob),a=element('a');a.href=url;a.download='PinMendDemo.zip';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}catch(e){announce(tr('exportError')+errorText(e));}});
+$('language').addEventListener('click',()=>{lang=lang==='ja'?'en':'ja';document.documentElement.lang=lang;$('language').textContent=lang==='ja'?'EN':'日本語';$('language').setAttribute('aria-label',lang==='ja'?'Switch to English':'日本語に切り替え');for(const e of document.querySelectorAll('[data-i18n]')){const value=lang==='en'?en[e.dataset.i18n]:initial.get(e.dataset.i18n);if(e.dataset.i18n==='title')e.innerHTML=value;else e.textContent=value;}renderInputs();if(dirty)invalidate();else renderResult();});
+renderInputs();run();
+</script></body></html>

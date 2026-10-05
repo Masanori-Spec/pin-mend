@@ -1,0 +1,14 @@
+node_modules/
+test-results/
+__pycache__/
+*.pyc
+.toolchain/
+*.elf
+*.hex
+*.bin
+*.a
+*.o
+*.map
+*.tar.gz
+*.tar.bz2
+*.log

@@ -1,0 +1,25 @@
+{
+  "name": "pin-mend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Minimum-rewire timer-conflict repair for a bounded Arduino Uno profile",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "test:oracle": "python3 -m unittest discover -s oracle -p 'test_*.py' -v",
+    "test:native": "node scripts/native-verify.mjs",
+    "test:browser": "node tests/browser-test.mjs",
+    "build": "node scripts/build.mjs",
+    "check": "npm test && npm run test:oracle && npm run fixture && npm run build",
+    "serve": "node scripts/serve.mjs",
+    "package": "python3 scripts/package.py",
+    "fixture": "node scripts/export-example.mjs"
+  },
+  "devDependencies": {
+    "avr8js": "0.21.1",
+    "@playwright/test": "1.56.0"
+  }
+}

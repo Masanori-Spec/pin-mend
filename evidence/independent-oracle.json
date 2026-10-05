@@ -1,0 +1,6 @@
+{
+  "status": "passed",
+  "cases": 245,
+  "method": "Independent Python Cartesian-product enumeration; seeded random cases plus four feature fixtures and fixed-button infeasibility",
+  "fixture_lower_bound": "Two Timer1 LEDs must move; the only remaining PWM pins D5/D6 displace two buttons. Lower bound four, attained by solver."
+}

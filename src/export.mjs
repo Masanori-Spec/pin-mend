@@ -1,0 +1,11 @@
+import {PROFILE} from './profile.mjs';
+import {validate, solve} from './solver.mjs';
+export function exportFiles(input) {
+  validate(input); const result=solve(input); if(result.status!=='solved') throw new Error('No feasible assignment to export');
+  const rows=result.assignments;
+  const header=['// PinMend generated pin constants. Profile: '+PROFILE.id,'// LED-brightness PWM only: carrier frequency may change.','#pragma once','',...rows.map(s=>`constexpr unsigned char PINMEND_PIN_${s.id} = ${s.pin};`),''].join('\n');
+  const leds=rows.filter(s=>s.type==='led-pwm'); const servo=rows.find(s=>s.type==='servo'); const tone=rows.find(s=>s.type==='tone');
+  const ino=['// Original PinMend demonstrator. No user sketch parsing or hardware upload.', '// Uno R3 / ATmega328P / 16 MHz / Arduino AVR 1.8.8 / Servo 1.3.0', '// Simulation is not electrical validation. Review wiring and power before hardware use.', '#include "pins.h"', ...(servo?['#include <Servo.h>','Servo demoServo;']:[]),'','void setup() {',...rows.filter(s=>s.type==='digital-in').map(s=>`  pinMode(PINMEND_PIN_${s.id}, INPUT_PULLUP);`),...rows.filter(s=>s.type==='digital-out').map(s=>`  pinMode(PINMEND_PIN_${s.id}, OUTPUT);\n  digitalWrite(PINMEND_PIN_${s.id}, LOW);`),...leds.map((s,i)=>`  analogWrite(PINMEND_PIN_${s.id}, ${i%2===0?64:192});`),'  // Establish PWM before taking over timers, exposing conflicts in the old mapping.','  delay(60);',...(servo?[`  demoServo.attach(PINMEND_PIN_${servo.id});`,'  demoServo.writeMicroseconds(1500);']:[]),...(tone?[`  tone(PINMEND_PIN_${tone.id}, 1000);`]:[]),'}','','void loop() {','  // The demo holds fixed brightness and peripheral signals for waveform inspection.','}',''].join('\n');
+  const report={schema:'pinmend-wiring/1',profile:PROFILE,features:input.features,unavailable:input.unavailable,minimumChangedAssignments:result.cost,tieBreak:result.tieBreak,changes:result.changes,assignments:rows,frequencyChanges:result.frequencyChanges,limitations:['LED brightness only; carrier frequency is not preserved','Not an electrical, timing-jitter, power, or hardware safety guarantee','Bounded declarative input; does not parse or rewrite arbitrary sketches']};
+  return {'pins.h':header,'PinMendDemo.ino':ino,'wiring-changes.json':JSON.stringify(report,null,2)+'\n','pinmend-project.json':JSON.stringify(input,null,2)+'\n'};
+}

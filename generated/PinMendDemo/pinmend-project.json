@@ -1,0 +1,46 @@
+{
+  "schema": "pinmend/1",
+  "features": {
+    "servo": true,
+    "tone": true
+  },
+  "unavailable": [],
+  "signals": [
+    {
+      "id": "LED_A",
+      "type": "led-pwm",
+      "pin": 9,
+      "fixed": false
+    },
+    {
+      "id": "LED_B",
+      "type": "led-pwm",
+      "pin": 10,
+      "fixed": false
+    },
+    {
+      "id": "BUTTON_A",
+      "type": "digital-in",
+      "pin": 5,
+      "fixed": false
+    },
+    {
+      "id": "BUTTON_B",
+      "type": "digital-in",
+      "pin": 6,
+      "fixed": false
+    },
+    {
+      "id": "SERVO",
+      "type": "servo",
+      "pin": 8,
+      "fixed": true
+    },
+    {
+      "id": "TONE",
+      "type": "tone",
+      "pin": 12,
+      "fixed": true
+    }
+  ]
+}

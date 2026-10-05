@@ -1,0 +1,2 @@
+import {createServer} from 'node:http';import {readFile} from 'node:fs/promises';
+createServer(async(req,res)=>{if(!['/','/index.html'].includes(req.url?.split('?')[0])){res.writeHead(404);res.end('Not found');return;}res.setHeader('Content-Type','text/html; charset=utf-8');res.setHeader('Cache-Control','no-store');res.end(await readFile('dist/index.html'));}).listen(Number(process.env.PORT||4173),'127.0.0.1',()=>console.log('PinMend: http://127.0.0.1:4173'));

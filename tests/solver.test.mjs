@@ -1,0 +1,21 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {example,PROFILE} from '../src/profile.mjs';import {solve,validate,diagnose} from '../src/solver.mjs';import {exportFiles} from '../src/export.mjs';import {zipFiles} from '../src/zip.mjs';
+test('both peripherals force exactly four changes',()=>{const r=solve(example());assert.equal(r.cost,4);assert.deepEqual(r.assignments.map(s=>s.pin),[2,3,5,6,8,12]);assert.equal(r.frequencyChanges.length,2);});
+test('no peripheral causes zero changes',()=>{const r=solve(example({servo:false,tone:false}));assert.equal(r.cost,0);assert.equal(r.assignments.length,4);});
+test('Servo alone uses Timer2 and exactly two changes',()=>{const r=solve(example({servo:true,tone:false}));assert.equal(r.cost,2);assert.deepEqual(r.assignments.map(s=>s.pin),[5,6,3,11,8]);assert.equal(r.frequencyChanges.length,0);});
+test('tone alone leaves Timer1 LEDs untouched',()=>assert.equal(solve(example({servo:false,tone:true})).cost,0));
+test('fixed button D5 gives explicit PWM shortage',()=>{const p=example();p.signals[2].fixed=true;const r=solve(p);assert.equal(r.status,'infeasible');assert.equal(r.reason,'pwm-shortage');assert.equal(r.pwmDemand,2);assert.equal(r.pwmCapacity,1);assert.deepEqual(r.pwmCandidates,[6]);});
+test('unavailable D6 gives explicit PWM shortage',()=>{const p=example();p.unavailable=[6];assert.equal(solve(p).status,'infeasible');});
+test('fixed conflicting LED cannot move',()=>{const p=example();p.signals[0].fixed=true;const r=solve(p);assert.equal(r.status,'infeasible');assert.equal(r.reason,'empty-domain');});
+test('fixed collision cannot move',()=>{const p=example();p.signals[5].pin=8;assert.equal(solve(p).status,'infeasible');});
+test('movable collision can repair',()=>{const p=example({servo:false,tone:false});p.signals[2].pin=9;assert.equal(solve(p).cost,1);assert.ok(diagnose(p).some(x=>x.reason==='duplicate'));});
+test('deterministic under repeated run and row permutation',()=>{const p=example();const r=solve(p);for(let i=0;i<10;i++)assert.deepEqual(solve(p),r);p.signals.reverse();assert.deepEqual(solve(p),r);});
+test('all 12 pins can be assigned and D0/1 never emitted',()=>{const p={schema:'pinmend/1',features:{servo:false,tone:false},unavailable:[],signals:PROFILE.pins.map((pin,i)=>({id:`D_${i.toString().padStart(2,'0')}`,pin,type:'digital-out',fixed:false}))};const r=solve(p);assert.equal(r.cost,0);assert.equal(new Set(r.assignments.map(s=>s.pin)).size,12);});
+test('unsupported and hostile inputs fail closed',()=>{for(const mutate of [p=>p.schema='pinmend/2',p=>p.signals[0].pin=0,p=>p.signals[0].pin=1,p=>p.signals[0].pin=14,p=>p.signals[0].pin='9',p=>p.signals[0].id='A;evil',p=>p.signals[0].id='__proto__',p=>p.signals[0].id='SERVO',p=>p.signals[0].type='spi',p=>p.signals[0].fixed='yes',p=>p.signals=[],p=>p.unavailable=[2,2],p=>p.unavailable=[0],p=>p.features.servo='yes',p=>p.signals.push({...p.signals[4],id:'SERVO_2'})]){const p=example();mutate(p);assert.throws(()=>validate(p));}});
+test('exports own source, exact solved pins and frequency limitations',()=>{const f=exportFiles(example());assert.deepEqual(Object.keys(f),['pins.h','PinMendDemo.ino','wiring-changes.json','pinmend-project.json']);assert.match(f['pins.h'],/PINMEND_PIN_LED_A = 5;/);assert.match(f['PinMendDemo.ino'],/delay\(60\);[\s\S]*demoServo.attach/);assert.equal(JSON.parse(f['wiring-changes.json']).minimumChangedAssignments,4);assert.deepEqual(JSON.parse(f['pinmend-project.json']),example());});
+test('infeasible project cannot export',()=>{const p=example();p.signals[2].fixed=true;assert.throws(()=>exportFiles(p));});
+test('original ZIP structure is stable',()=>{const files=exportFiles(example());const z=zipFiles(files);assert.equal(new DataView(z.buffer).getUint32(0,true),0x04034b50);assert.deepEqual(z,zipFiles(files));});
+
+test('core macro names get an independent generated namespace',()=>{const p=example();p.signals[0].id='A0';const f=exportFiles(p);assert.match(f['pins.h'],/PINMEND_PIN_A0 =/);assert.doesNotMatch(f['pins.h'],/unsigned char PIN_A0 =/);});
+
+test('unsupported constraints never silently disappear',()=>{for(const mutate of [p=>p.features.spi=true,p=>p.signals[0].requiredHz=490,p=>p.cost='wire-length',p=>delete p.signals[0].fixed]){const p=example();mutate(p);assert.throws(()=>solve(p),/fields/);}});
