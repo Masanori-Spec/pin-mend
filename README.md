@@ -56,7 +56,7 @@ npm run test:native
 
 The negative control starts PWM, waits 60 ms, then attaches Servo and starts tone. Measurements compare 15–50 ms against 100–280 ms, avoiding a false “passes” result from the pre-attachment window. Expected dual-peripheral behavior is lost sustained PWM on old D9/D10 but correct repaired D5/D6 PWM, 1,500 μs Servo pulses at about 20 ms intervals, and approximately 1 kHz tone.
 
-Current checked-in numerical evidence reflects the local generated-source gate; hosted browser results must be reviewed on the published commit before calling browser verification complete. Tests are simulations, not electrical or physical-device certification.
+The checked-in native and browser reports come from [the successful hosted run](https://github.com/Masanori-Spec/pin-mend/actions/runs/37253528302) on runtime commit `c6d50b0bc6cd13ca8b4eca97b5744b323bba3537`. Both Node matrix jobs and the browser/native job passed. The browser completed 21 checks, generated four real source ZIP downloads, and printed the default repair in Japanese and English as one-page A4 PDFs. Seven screenshots, including rendered print pages, were inspected. The three repaired/baseline browser-download scenarios plus a custom identifier/pin download compiled successfully; the old-mapping negative control is intentionally generated separately. Tests are simulations, not electrical or physical-device certification. See `evidence/hosted-verification.json` and `docs/verification.md`.
 
 ## Distribution boundary
 

@@ -1,0 +1,37 @@
+{
+  "status": "passed",
+  "browserSandbox": true,
+  "checks": [
+    "Japanese default, min4, required frequency acceptance, real ZIP download",
+    "Language switch preserves mapping and acknowledgement",
+    "No-feature min0 and stale result invalidation",
+    "Servo-only min2, 490 Hz preserved",
+    "Fixed D5 infeasible demand2 capacity1 with no export",
+    "Unavailable pin constraint",
+    "Add/delete/repeated solve",
+    "Valid JSON import",
+    "Custom pin/identifier JSON exported as actual source ZIP",
+    "Malformed import preserves current project",
+    "Hostile identifier rejected",
+    "Bounded JSON import",
+    "Delayed older imports cannot overwrite reset or newer import",
+    "Keyboard skip link",
+    "Keyboard toggle and solve",
+    "Edited signal identifiers refresh neighboring accessible names",
+    "JA to EN to JA restores text without literal markup",
+    "Responsive 390px JA/EN and 320px no horizontal overflow",
+    "Actual JA/EN A4 print PDFs, generated source and frequency warning text, page bounds and rendered PNG inspection",
+    "Keyboard import control",
+    "No external requests, no JavaScript errors"
+  ],
+  "screenshots": [
+    "desktop-ja.png",
+    "desktop-en.png",
+    "infeasible-en.png",
+    "mobile-ja.png",
+    "mobile-en.png",
+    "print-en-1.png",
+    "print-ja-1.png"
+  ],
+  "pageErrors": []
+}

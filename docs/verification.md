@@ -20,8 +20,29 @@ These tolerances establish bounded simulated behavior. They do not certify elect
 
 ## Browser gate
 
-Hosted Ubuntu 22.04 and system Chrome with `chromiumSandbox: true`. Screenshots use installed Japanese system fonts, never bundled fonts. No `--no-sandbox`, no external website access from the application. A report and five screenshots record desktop JA/EN, infeasible EN, and mobile JA/EN. Smaller 320 px layout is checked for overflow.
+Hosted Ubuntu 22.04 and system Chrome with `chromiumSandbox: true`. Screenshots use installed Japanese system fonts, never bundled fonts. No `--no-sandbox`, no external website access from the application. A report and five screen screenshots record desktop JA/EN, infeasible EN, and mobile JA/EN. Smaller 320 px layout is checked for overflow. Two further PNGs render actual browser-generated A4 print PDFs. The default repaired plan fits one page in both languages; generated pin constants and the carrier-frequency warning are present. Temporary PDFs are removed, avoiding redistribution of embedded system fonts. The print gate also verifies restoration of the code-preview open state.
 
 ## Reproduction and evidence
 
 `evidence/native-verification.json` records measured quantities, source digests, exact tool versions, source origin, and assertion pass state. `evidence/independent-oracle.json` records oracle coverage. GitHub Actions reports the commit actually tested; inspect that exact commit rather than inferring completion from local source generation.
+
+
+## Verified hosted result (2026-10-05)
+
+- Runtime/source commit: `c6d50b0bc6cd13ca8b4eca97b5744b323bba3537`
+- [GitHub Actions run 37253528302](https://github.com/Masanori-Spec/pin-mend/actions/runs/37253528302): all three jobs passed
+- Node 22 and Node 24: 17 unit tests and 245 independent oracle cases, deterministic fixture and standalone build
+- Browser: 21 checks, four actual ZIP downloads, no page errors or external application requests; sandbox enabled
+- Desktop JA/EN, mobile JA/EN, infeasibility and both actual rendered print pages inspected
+- Native: actual downloaded sources for repaired dual-peripheral, no-peripheral original and Servo-only repair; separately generated old-map negative control; custom downloaded alias/pin source also compiled
+- Each native compile confirms Arduino AVR 1.8.8, ATmega328P, 16 MHz, and Servo 1.3.0 when active, from the official CLI JSON result
+
+Measured repaired D5/D6 carrier is approximately 976.563 Hz, versus approximately 490.196 Hz before repair on D9/D10. The old D9/D10 fixture loses sustained PWM after Servo attachment. Repaired Servo and tone satisfy the stated tolerances. Full numerical measurements are in `evidence/native-verification.json`.
+
+An independent reviewer additionally checked 21,336 assignment cases and four custom compile configurations outside the checked-in 245-case test suite. Those additional checks are review evidence; the reproducible repository test count remains 245.
+
+The initial browser test caught an asynchronous import-assertion race in the test harness; auto-waiting assertions replaced immediate reads. Pixel inspection then caught a JA→EN→JA translation markup leak; the source now snapshots plain text for non-title translations and tests the round trip. The final hosted run covers both fixes, live accessible-label refresh, and interrupted-import protection.
+
+### Remaining bounds
+
+No physical board or connected device was used. No electrical, power, real-time jitter, arbitrary-library interaction, or arbitrary-sketch-preservation claim follows from these results. Keyboard flows were exercised, but no formal screen-reader audit was performed. Print validation covers the included six-signal repaired fixture, not every possible maximal input. The broader commercial usefulness and undocumented competitor capabilities remain unverified.

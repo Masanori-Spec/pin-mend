@@ -86,7 +86,7 @@
         "mcu": "atmega328p",
         "clockHz": 16000000
       },
-      "sourceOrigin": "generated-source",
+      "sourceOrigin": "actual-browser-download",
       "sourceSha256": "e85b78745b0cfe11a25dd68c0c359c84eec159d2d13d59db3891b3a8e66caae8",
       "pinsSha256": "85b639df1198a5c50a6372e8c14f368ea37c4e72bea2848e7f5dabc383a86bf5",
       "cycles": 4800001,
@@ -306,7 +306,7 @@
         "mcu": "atmega328p",
         "clockHz": 16000000
       },
-      "sourceOrigin": "generated-source",
+      "sourceOrigin": "actual-browser-download",
       "sourceSha256": "9b7ceed5ef094140cfb6369ad222f28f4d5b8cf3c4e122f4f09531911aee2928",
       "pinsSha256": "04817b6b36d13b202419781f616677fb5d78fd3933bf853246d6d7513f8bbd63",
       "cycles": 4800001,
@@ -386,7 +386,7 @@
         "mcu": "atmega328p",
         "clockHz": 16000000
       },
-      "sourceOrigin": "generated-source",
+      "sourceOrigin": "actual-browser-download",
       "sourceSha256": "3453a8ce4c1fc9095d41a0c352cefb7fcb4a071607fca59c56b819554a7b9a66",
       "pinsSha256": "7cc229cd95b53c0022469ed2cd436741b4d184f977e18ba89efa988f204824f2",
       "cycles": 4800001,

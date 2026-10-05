@@ -35,6 +35,8 @@ docs/verification.md
 docs/product-scope.md
 evidence/independent-oracle.json
 evidence/native-verification.json
+evidence/browser-verification.json
+evidence/hosted-verification.json
 generated/PinMendDemo/pins.h
 generated/PinMendDemo/PinMendDemo.ino
 generated/PinMendDemo/wiring-changes.json

@@ -1,0 +1,81 @@
+{
+  "status": "passed",
+  "testedCommit": "c6d50b0bc6cd13ca8b4eca97b5744b323bba3537",
+  "workflowRun": "https://github.com/Masanori-Spec/pin-mend/actions/runs/37253528302",
+  "hostedRunner": "ubuntu-22.04",
+  "jobsPassed": [
+    "exact-solver (22)",
+    "exact-solver (24)",
+    "browser-and-native"
+  ],
+  "browserSandbox": true,
+  "browserChecks": 21,
+  "printPages": {
+    "ja": 1,
+    "en": 1
+  },
+  "artifactSha256": "575aca203b3eb36e209fed18552c3aebf41c5bd0ecbcb17976c543a43aceb889",
+  "safeArtifactFiles": [
+    {
+      "name": "both-repaired.zip",
+      "bytes": 5066,
+      "sha256": "0cfa58a0eab3531cbd721ce9a3b42f1c0a6664cc78f97abdc942d94a430bafec"
+    },
+    {
+      "name": "custom-aliases.zip",
+      "bytes": 6983,
+      "sha256": "50df08b21197d0802f5e93deb8e7e34b0a09114cce53ebb6de2bc63a9f5456f7"
+    },
+    {
+      "name": "desktop-en.png",
+      "bytes": 205359,
+      "sha256": "ca7d65b9fd8e3cbb02b95f224e7f9b92df93f1d92f264403b319c38612718bdd"
+    },
+    {
+      "name": "desktop-ja.png",
+      "bytes": 230637,
+      "sha256": "6b3c4ec5fa9be652b267046b6d8ee4802e256448b9d56d0e10c92b858b806ba4"
+    },
+    {
+      "name": "infeasible-en.png",
+      "bytes": 178673,
+      "sha256": "d3914618c596f691465e243ba2fd68ea195cfe1c282b9c9ffddf4c76b18a7d91"
+    },
+    {
+      "name": "mobile-en.png",
+      "bytes": 163951,
+      "sha256": "b6888a8b4b78d7d2d75d52f2a23a4c45cacec711f43a17053e570cd1a6cf17c2"
+    },
+    {
+      "name": "mobile-ja.png",
+      "bytes": 186163,
+      "sha256": "cd8a3385207a95a345a6fcd250d74817749296050444882620fe1ab2e2c4fc12"
+    },
+    {
+      "name": "no-features-original.zip",
+      "bytes": 4099,
+      "sha256": "b68c32ed99950a47ed1e3f5579c306411d18cc60a92f0a39a13ae9cf38192c10"
+    },
+    {
+      "name": "print-en-1.png",
+      "bytes": 79683,
+      "sha256": "10f6a6a143a9c8746ecbc1473e66eb24a2caf3f3818750c417f23ff8ba9f4e16"
+    },
+    {
+      "name": "print-ja-1.png",
+      "bytes": 72971,
+      "sha256": "6f48f717c057c821598138971a10818143c9bb94dbf2a31146ce44e963093378"
+    },
+    {
+      "name": "servo-only-repaired.zip",
+      "bytes": 4529,
+      "sha256": "07779e63384d0e10c6afed4d0f19f5847fa3c31986f88dfa764d5dfe203928cb"
+    }
+  ],
+  "limitations": [
+    "Bounded Uno profile only",
+    "No physical hardware or electrical-safety validation",
+    "No arbitrary sketch equivalence",
+    "Printed fixture only; arbitrary maximum-size printed projects are not certified"
+  ]
+}
