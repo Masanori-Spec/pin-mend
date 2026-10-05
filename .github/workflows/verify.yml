@@ -1,0 +1,78 @@
+name: Verify PinMend
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-solver:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        node: [22, 24]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm ci --ignore-scripts
+      - run: npm run check
+      - name: Standalone distribution stays deterministic
+        run: git diff --exit-code -- dist/index.html
+      - name: Check publication allowlist
+        run: npm run package
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pinmend-oracle-${{ matrix.node }}
+          path: evidence/independent-oracle.json
+          if-no-files-found: error
+  browser-and-native:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.16.0'
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm ci --ignore-scripts
+      - run: npm run build
+      - name: Japanese system fonts for screenshots
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends fonts-noto-cjk
+          fc-match ':lang=ja'
+      - name: Actual browser workflow, sandbox enabled
+        run: npm run test:browser
+        env:
+          CHROME_BIN: /usr/bin/google-chrome
+      - name: Install pinned official test-only toolchain
+        run: bash scripts/setup-arduino.sh
+      - name: Compile the actual browser downloads and measure simulated GPIO
+        run: npm run test:native
+        env:
+          PINMEND_BROWSER_DOWNLOADS: test-results/browser
+      - name: Upload own sources, screenshots and numerical summaries only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pinmend-browser-native-evidence
+          path: |
+            test-results/browser/report.json
+            test-results/browser/*.png
+            test-results/browser/*.zip
+            evidence/native-verification.json
+          if-no-files-found: error
